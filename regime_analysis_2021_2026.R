@@ -1,32 +1,3 @@
-# =============================================================================
-# MARKET-REGIME ANALYSIS — WEIGHTS AND HOLDING-PERIOD RETURNS BY REGIME
-# Naive (1/N), Sharpe maximization and Kurtosis minimization, 17 coins
-# =============================================================================
-# Regimes   : dated at Bitcoin's turning points in the out-of-sample period
-#   Regime 1  Bear market 2021-2022 : 7 Nov 2021 - 21 Nov 2022  (peak 8 Nov 2021, low 21 Nov 2022)
-#   Regime 2  Bull market 2022-2025 : 22 Nov 2022 - 6 Oct 2025  (low 21 Nov 2022, peak 6 Oct 2025)
-#   Regime 3  Bear market 2025-2026 : 7 Oct 2025 - 30 Jun 2026  (peak 6 Oct 2025, low 30 Jun 2026)
-# Design    : one walk-forward backtest over the whole out-of-sample period,
-#             identical to Tables 3-4 and Figures 2-4 (weights estimated on the
-#             previous 180 daily returns, buy-and-hold to the next rebalance,
-#             0.1% cost on turnover). The results are then split by regime:
-#             - weight charts: holding periods whose rebalancing date falls in
-#               the regime (each bar = weights set at the start of the period)
-#             - return charts: holding periods that start and end in the regime
-#             - summary table: daily net returns within the regime dates
-# Calendar  : Half Week = twice a week (alternating gaps of 3 and 4 days);
-#             One Week = 7 days; Two Weeks = 14; Four Weeks = 28; Eight Weeks = 56.
-# Outputs   : saved in a "Regime_Charts" folder next to the price file
-#             Regime<k>_<name>_Sharpe_Weights.png / .pdf     (3 regimes)
-#             Regime<k>_<name>_Kurtosis_Weights.png / .pdf   (3 regimes)
-#             Regime<k>_<name>_Returns.png / .pdf            (3 regimes)
-#             Regime_Performance.csv  (cumulative return, Sharpe, volatility, ...)
-#             Regime_Weights.csv      (distance from 1/N and change per rebalance)
-# Run time  : about 2 minutes. Select the price file when the dialog opens.
-# =============================================================================
-
-rm(list = ls())   # start clean, so no earlier setting is reused
-
 for (pkg in c("ggplot2", "patchwork", "viridisLite")) {
     if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
 }
